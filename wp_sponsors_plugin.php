@@ -39,7 +39,7 @@ if(!class_exists('WP_Sponsor_Plugin'))
 
 			// Register custom post types
 			require_once(sprintf("%s/post-types/post_type_template.php", dirname(__FILE__)));
-			$Post_Type_Template = new Post_Type_Template();
+			$Eventos_Post_Type = new Eventos_Post_Type();
 
 			$plugin = plugin_basename(__FILE__);
 		} // END public function __construct
