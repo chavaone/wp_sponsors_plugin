@@ -144,7 +144,7 @@ if(!class_exists('Sponsors_Post_Type'))
         public function add_menu_icons_styles()
         {?>
             <style>
-                #adminmenu .menu-icon-eventos div.wp-menu-image:before
+                #adminmenu .menu-icon-patrocinador div.wp-menu-image:before
                 {
                   content: "\f488";
                 }
