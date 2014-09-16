@@ -20,7 +20,7 @@ if(!class_exists('Eventos_Post_Type'))
         {
             // Initialize Post Type
             $this->create_post_type();
-            add_action ("save_post", array(&$this, 'save_post'));
+            add_action ("save_post", array(&$this, 'save_post'), 10, 2 );
             add_filter ("manage_edit-patrocinador_columns", array(&$this, "edit_columns"));
             add_action ("manage_posts_custom_column", array(&$this, "custom_columns"));
             add_action ("admin_head", array(&$this, 'add_menu_icons_styles' ));
