@@ -1,15 +1,17 @@
 <?php
 /*
-Plugin Name: WP Plugin Template
-Plugin URI: https://github.com/fyaconiello/wp_plugin_template
-Description: A simple wordpress plugin template
+Plugin Name: WP Sponsors Plugin
+Plugin URI: https://github.com/chavaone/wp_sponsors_plugin
+Description: A simple sponsors plugin
 Version: 1.0
-Author: Francis Yaconiello
-Author URI: http://www.yaconiello.com
+Author: Marcos Chavarría Teijeiro
+Author URI: http://aquelando.info
+GitHub Plugin URI: chavaone/wp_sponsors_plugin
 License: GPL2
 */
 /*
-Copyright 2012  Francis Yaconiello  (email : francis@yaconiello.com)
+Copyright 2012  Francis Yaconiello  <francis@yaconiello.com>
+          2014  Marcos Chavarría Teijeiro  <chavarria1991@gmail.com>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -25,25 +27,21 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if(!class_exists('WP_Plugin_Template'))
+if(!class_exists('WP_Sponsor_Plugin'))
 {
-	class WP_Plugin_Template
+	class WP_Sponsor_Plugin
 	{
 		/**
 		 * Construct the plugin object
 		 */
 		public function __construct()
 		{
-			// Initialize Settings
-			require_once(sprintf("%s/settings.php", dirname(__FILE__)));
-			$WP_Plugin_Template_Settings = new WP_Plugin_Template_Settings();
 
 			// Register custom post types
 			require_once(sprintf("%s/post-types/post_type_template.php", dirname(__FILE__)));
 			$Post_Type_Template = new Post_Type_Template();
 
 			$plugin = plugin_basename(__FILE__);
-			add_filter("plugin_action_links_$plugin", array( $this, 'plugin_settings_link' ));
 		} // END public function __construct
 
 		/**
@@ -62,25 +60,18 @@ if(!class_exists('WP_Plugin_Template'))
 			// Do nothing
 		} // END public static function deactivate
 
-		// Add the settings link to the plugins page
-		function plugin_settings_link($links)
-		{
-			$settings_link = '<a href="options-general.php?page=wp_plugin_template">Settings</a>';
-			array_unshift($links, $settings_link);
-			return $links;
-		}
 
 
-	} // END class WP_Plugin_Template
-} // END if(!class_exists('WP_Plugin_Template'))
+	} // END class WP_Sponsor_Plugin
+} // END if(!class_exists('WP_Sponsor_Plugin'))
 
-if(class_exists('WP_Plugin_Template'))
+if(class_exists('WP_Sponsor_Plugin'))
 {
 	// Installation and uninstallation hooks
-	register_activation_hook(__FILE__, array('WP_Plugin_Template', 'activate'));
-	register_deactivation_hook(__FILE__, array('WP_Plugin_Template', 'deactivate'));
+	register_activation_hook(__FILE__, array('WP_Sponsor_Plugin', 'activate'));
+	register_deactivation_hook(__FILE__, array('WP_Sponsor_Plugin', 'deactivate'));
 
 	// instantiate the plugin class
-	$wp_plugin_template = new WP_Plugin_Template();
+	$wp_plugin_template = new WP_Sponsor_Plugin();
 
 }
