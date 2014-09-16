@@ -1,10 +1,10 @@
 <?php
-if(!class_exists('Eventos_Post_Type'))
+if(!class_exists('Sponsors_Post_Type'))
 {
     /**
      * A PostTypeTemplate class that provides 3 additional meta fields
      */
-    class Eventos_Post_Type
+    class Sponsors_Post_Type
     {
         const POST_TYPE = "patrocinador";
 
@@ -155,8 +155,6 @@ if(!class_exists('Eventos_Post_Type'))
 
         public function admin_init()
         {
-            add_action('admin_print_styles', array(&$this, 'metabox_admin_styles'));
-            add_action('admin_print_scripts', array(&$this, 'metabox_admin_scripts'));
             add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
         }
 
