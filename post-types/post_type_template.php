@@ -20,7 +20,7 @@ if(!class_exists('Sponsors_Post_Type'))
         {
             // Initialize Post Type
             $this->create_post_type();
-            add_action ("save_post", array(&$this, 'save_post'), 10, 2 );
+            add_action ("save_post", array(&$this, 'save_post'));
             add_filter ("manage_edit-patrocinador_columns", array(&$this, "edit_columns"));
             add_action ("manage_posts_custom_column", array(&$this, "custom_columns"));
             add_action ("admin_head", array(&$this, 'add_menu_icons_styles' ));
@@ -69,11 +69,9 @@ if(!class_exists('Sponsors_Post_Type'))
         }
 
 
-        public function save_post($post_id, $post )
+        public function save_post($post_id)
         {
-            /* Verify the nonce before proceeding. */
-            if ( !isset( $_POST['patrocinador_url_post_nonce'] ) || !wp_verify_nonce( $_POST['patrocinador_url_post_nonce'], basename( __FILE__ ) ) )
-              return $post_id;
+            global $post;
 
             /* Get the post type object. */
             $post_type = get_post_type_object( $post->post_type );
@@ -177,7 +175,7 @@ if(!class_exists('Sponsors_Post_Type'))
         public function add_inner_meta_boxes($post)
         {
             // Render the job order metabox
-            include(sprintf("%s/../templates/%s_metabox.php", dirname(__FILE__), self::POST_TYPE));
+            include(plugin_dir_path(dirname(__FILE__)) . sprintf("templates/%s_metabox.php", self::POST_TYPE));
         } // END public function add_inner_meta_boxes($post)
 
     } // END class Post_Type_Template
